@@ -1,29 +1,29 @@
-var slider = document.getElementById("slider-input")
+// var slider = document.getElementById("slider-input")
 
-slider.oninput = function() {
-    let progressBar = document.querySelector("progress");
-    progressBar.value = slider.value - 8.5;
+// slider.oninput = function() {
+//     let progressBar = document.querySelector("progress");
+//     progressBar.value = slider.value - 8.5;
 
-    let sliderValue = document.getElementById("slider-value");
+//     let sliderValue = document.getElementById("slider-value");
 
-    var value = slider.value.toString();
+//     var value = slider.value.toString();
 
-    switch (value.length) {
-        case 1:
-        case 2:
-            value += ":00";
-            break;
-        case 3:
-            value = value.substring(0, 1) + ":30";
-            break;
-        case 4:
-            value = value.substring(0, 2) + ":30";
-            break;
-    }
+//     switch (value.length) {
+//         case 1:
+//         case 2:
+//             value += ":00";
+//             break;
+//         case 3:
+//             value = value.substring(0, 1) + ":30";
+//             break;
+//         case 4:
+//             value = value.substring(0, 2) + ":30";
+//             break;
+//     }
 
-    console.log(value);
-    sliderValue.innerHTML = value;
-}
+//     console.log(value);
+//     sliderValue.innerHTML = value;
+// }
 
 var lon = '';
 var lat = '';
@@ -35,14 +35,14 @@ let weather = {
                 "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + this.apiKey
             )
             .then((response) => response.json())
-            .then((data) => this.displayWeather(data))
-            .then(() => this.fetchDailyWeather());
+            .then((data) => this.displayWeather(data));
     },
     displayWeather: function(data) {
         lon = data.coord.lon;
         lat = data.coord.lat;
         const { name } = data;
         const { icon, description } = data.weather[0];
+        console.log(icon)
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
         console.log(name, icon, description, temp, humidity, speed);
@@ -54,18 +54,6 @@ let weather = {
     },
     search: function() {
         this.fetchWeather(document.querySelector('.search-bar').value);
-    },
-    fetchDailyWeather: function() {
-        fetch(
-                "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + this.apiKey
-            )
-            .then((response) => response.json())
-            .then((data) => this.displayDailyWeather(data));
-    },
-    displayDailyWeather: function(data) {
-        console.log(data)
-        const { date } = data.dt;
-        console.log(date);
     }
 }
 
@@ -107,3 +95,61 @@ for (let i = 1; i < 5; i++) {
         .querySelector('.week-day' + i)
         .innerText = weekDays[new Date(today.getTime() + 86400000 * i).getDay()]
 }
+
+// Hide/display the card with wind speed and humidity info
+
+var windSpeedHumidity = document.getElementById("detailed-info");
+
+var showDetailedInfoButton = document.getElementById("show-hide-detailed-info");
+
+var showArrow = document.getElementById("show-arrow");
+var hideArrow = document.getElementById("hide-arrow");
+
+showDetailedInfoButton.addEventListener("click", () => {
+    if (windSpeedHumidity.style.display != "none") {
+        windSpeedHumidity.style.display = "none";
+        showArrow.style.display = "block";
+        hideArrow.style.display = "none";
+    } else {
+        windSpeedHumidity.style.display = "block"
+        showArrow.style.display = "none";
+        hideArrow.style.display = "block";
+    }
+})
+
+// Swiper
+var swiper = new Swiper(".weather-timeline", {
+    spaceBetween: 10,
+    loop: true,
+    // autoplay: {
+    //     delay: 2000,
+    //     disableOnInteraction: false,
+    // },
+    centeredSlides: true,
+    breakpoints: {
+        0: {
+            slidesPerView: 2,
+        },
+        568: {
+            slidesPerView: 3,
+        },
+        768: {
+            slidesPerView: 4,
+        },
+        968: {
+            slidesPerView: 5,
+        }
+    }
+});
+
+// Randomizing data
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+var randomNumber = randomIntFromInterval(1, 13); // to fetch icons from https://openweathermap.org/img/wn/
+
+var weatherTimeIcons = document.querySelectorAll(".weather-time-icon");
+weatherTimeIcons.src = "https://openweathermap.org/img/wn/02d.png";
+console.log(weatherTimeIcons);
+//weatherTimeIcons.src = "https://openweathermap.org/img/wn/04d.png";

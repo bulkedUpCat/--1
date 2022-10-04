@@ -4,8 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontawesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Custom styles -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Swiper styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,700;1,600&display=swap" rel="stylesheet">
@@ -36,41 +41,56 @@
                     <div>
                         <h3 class="temperature"></h3>
                     </div>
+                    <button id="show-hide-detailed-info">
+                        <i id="show-arrow" class="fa-solid fa-angle-down"></i>
+                        <i id="hide-arrow" class="fa-solid fa-angle-up"></i>
+                    </button>
                 </div>
             </div>
             <hr/>
-            <div class="weather-timeline">
-                <div class="weather-time">
-                    <h5>9</h5>
-                    <i class="fa-solid fa-sun fa-2x"></i>
-                    <h5>+16°</h5>
-                </div>
-                <div class="weather-time">
-                    <h5>12</h5>
-                    <i class="fa-solid fa-sun fa-2x"></i>
-                    <h5>+16°</h5>
-                </div>
-                <div class="weather-time">
-                    <h5>15</h5>
-                    <i class="fa-solid fa-cloud fa-2x"></i>
-                    <h5>+18°</h5>
-                </div>
-                <div class="weather-time">
-                    <h5>18</h5>
-                    <i class="fa-solid fa-cloud fa-2x"></i>
-                    <h5>+18°</h5>
+            <div class="weather-timeline swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide weather-time">
+                        <h5>9:00</h5>
+                        <!-- <i class="fa-solid fa-sun fa-2x"></i> -->
+                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
+                        <h5>+16°</h5>
+                    </div>
+                    <div class="swiper-slide weather-time">
+                        <h5>12:00</h5>
+                        <!-- <i class="fa-solid fa-sun fa-2x"></i> -->
+                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
+                        <h5>+16°</h5>
+                    </div>
+                    <div class="swiper-slide weather-time">
+                        <h5>15:00</h5>
+                        <!-- <i class="fa-solid fa-cloud fa-2x"></i> -->
+                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
+                        <h5>+18°</h5>
+                    </div>
+                    <div class="swiper-slide weather-time">
+                        <h5>18:00</h5>
+                        <!-- <i class="fa-solid fa-cloud fa-2x"></i> -->
+                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
+                        <h5>+18°</h5>
+                    </div>
+                    <div class="swiper-slide weather-time">
+                        <h5>21:00</h5>
+                        <!-- <i class="fa-solid fa-cloud fa-2x"></i> -->
+                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
+                        <h5>+18°</h5>
+                    </div>
                 </div>
             </div>
-            <div class="slider-bar">
+            <!-- <div class="slider-bar">
                 <div id="slider-value" class="slider-value">8:30</div>
                 <div class="slider">
                     <input id="slider-input" type="range" min="8.5" max="18.5" value="8.5" step="0.5">
                     <progress min="0" max="10" value="0"></progress>
                 </div>
-            </div>
-
+            </div> -->
         </div>
-        <div class="card">
+        <div class="card" id="detailed-info">
             <div class="weather-indicator">
                 <i class="fa-solid fa-wind"></i>
                 <h4>Wind speed</h4>
@@ -112,6 +132,9 @@
             </div>
         </div>
     </div>
+    <!-- Swiper js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- Custom js -->
     <script src="index.js"></script>
 </body>
 

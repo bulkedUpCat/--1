@@ -96,13 +96,12 @@ input[type="text"] {
     display: flex;
     justify-content: space-between;
     padding: 15px;
+    width: 100%;
 }
 
-.weather-time {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+.weather-timeline .weather-time {
+    width: 100px;
+    text-align: center;
 }
 
 .slider-bar {
@@ -159,6 +158,16 @@ input[type="text"] {
 
 .slider progress::-webkit-progress-value {
     background-color: rgba(151, 144, 144, 0.413);
+}
+
+#show-arrow {
+    display: none;
+}
+
+#show-hide-detailed-info {
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 .days-box {
