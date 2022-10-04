@@ -128,7 +128,7 @@ var swiper = new Swiper(".weather-timeline", {
     centeredSlides: true,
     breakpoints: {
         0: {
-            slidesPerView: 2,
+            slidesPerView: 1,
         },
         568: {
             slidesPerView: 3,
@@ -143,13 +143,18 @@ var swiper = new Swiper(".weather-timeline", {
 });
 
 // Randomizing data
-function randomIntFromInterval(min, max) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-var randomNumber = randomIntFromInterval(1, 13); // to fetch icons from https://openweathermap.org/img/wn/
-
 var weatherTimeIcons = document.querySelectorAll(".weather-time-icon");
-weatherTimeIcons.src = "https://openweathermap.org/img/wn/02d.png";
-console.log(weatherTimeIcons);
-//weatherTimeIcons.src = "https://openweathermap.org/img/wn/04d.png";
+
+const icons = [1, 2, 3, 4, 9];
+
+weatherTimeIcons.forEach(function(wti) {
+    const random = Math.floor(Math.random() * icons.length);
+    wti.src = "https://openweathermap.org/img/wn/0" + icons[random] + "d.png";
+});
+
+var weatherDaysIcons = document.querySelectorAll(".day-icon");
+
+weatherDaysIcons.forEach(function(wdi) {
+    const random = Math.floor(Math.random() * icons.length);
+    wdi.src = "https://openweathermap.org/img/wn/0" + icons[random] + "d.png";
+});
