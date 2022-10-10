@@ -1,29 +1,4 @@
-// var slider = document.getElementById("slider-input")
-
-// slider.oninput = function() {
-//     let progressBar = document.querySelector("progress");
-//     progressBar.value = slider.value - 8.5;
-
-//     let sliderValue = document.getElementById("slider-value");
-
-//     var value = slider.value.toString();
-
-//     switch (value.length) {
-//         case 1:
-//         case 2:
-//             value += ":00";
-//             break;
-//         case 3:
-//             value = value.substring(0, 1) + ":30";
-//             break;
-//         case 4:
-//             value = value.substring(0, 2) + ":30";
-//             break;
-//     }
-
-//     console.log(value);
-//     sliderValue.innerHTML = value;
-// }
+// Fetch all weather data
 
 var lon = '';
 var lat = '';
@@ -40,12 +15,14 @@ let weather = {
     displayWeather: function(data) {
         lon = data.coord.lon;
         lat = data.coord.lat;
+
         const { name } = data;
         const { icon, description } = data.weather[0];
-        console.log(icon)
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
+
         console.log(name, icon, description, temp, humidity, speed);
+
         document.querySelector('.temperature').innerText = temp + " °C";
         document.querySelector('.weather-icon').src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
         document.querySelector('.weather-description').innerText = description;
@@ -57,17 +34,27 @@ let weather = {
     }
 }
 
-// Fetch all weather data
 weather.fetchWeather('Kharkiv');
 
 // Search button functionality
+
 document
     .querySelector('.search-bar-icon')
     .addEventListener('click', () => {
         weather.search();
     })
 
+document
+    .getElementById('search-bar')
+    .addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('search-btn').click();
+        }
+    })
+
 // Days of the week
+
 const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 const today = new Date();
@@ -118,14 +105,11 @@ showDetailedInfoButton.addEventListener("click", () => {
 })
 
 // Swiper
+
 var swiper = new Swiper(".weather-timeline", {
     spaceBetween: 10,
     loop: true,
-    // autoplay: {
-    //     delay: 2000,
-    //     disableOnInteraction: false,
-    // },
-    centeredSlides: true,
+    centeredSlides: false,
     breakpoints: {
         0: {
             slidesPerView: 1,
@@ -146,6 +130,8 @@ var swiper = new Swiper(".weather-timeline", {
 var weatherTimeIcons = document.querySelectorAll(".weather-time-icon");
 
 const icons = [1, 2, 3, 4, 9];
+const timeStamps = ["3:00", "6:00", "9:00", "12:00", "15:00", "18:00", "21:00", "24:00"];
+const temperatureValues = ["+16°", "+16°", "+16°", "+16°", "+18°", "+18°", "+18°", "+18°"];
 
 weatherTimeIcons.forEach(function(wti) {
     const random = Math.floor(Math.random() * icons.length);
@@ -158,3 +144,27 @@ weatherDaysIcons.forEach(function(wdi) {
     const random = Math.floor(Math.random() * icons.length);
     wdi.src = "https://openweathermap.org/img/wn/0" + icons[random] + "d.png";
 });
+
+// Removing hardcoded data
+
+for (let i = 0; i < 8; i++) {
+    var div = document.createElement('div');
+    div.className = "swiper-slide weather-time";
+
+    var h5_1 = document.createElement('h5');
+    h5_1.innerText = timeStamps[i];
+
+    var img = document.createElement('img');
+    const random = Math.floor(Math.random() * icons.length);
+    img.src = "https://openweathermap.org/img/wn/0" + icons[random] + "d.png";
+
+    var h5_2 = document.createElement('h5');
+    h5_2.innerText = temperatureValues[i];
+
+    div.appendChild(h5_1);
+    div.appendChild(img);
+    div.appendChild(h5_2)
+
+    var weatherSwiperWrapperDiv = document.getElementById("swiper-wrapper");
+    weatherSwiperWrapperDiv.appendChild(div);
+}

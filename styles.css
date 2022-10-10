@@ -6,6 +6,10 @@
     font-size: 20px;
 }
 
+body {
+    background: rgb(218, 235, 237);
+}
+
 hr {
     background-color: rgba(255, 255, 255, 0.639);
     height: 3px;
@@ -48,7 +52,7 @@ input[type="text"] {
 }
 
 .card {
-    background: rgb(145, 228, 251);
+    background: rgb(116, 228, 243);
     color: #35424A;
     padding: 10px 2%;
     margin: 5px 2%;
@@ -73,6 +77,9 @@ input[type="text"] {
     position: absolute;
     top: 0;
     margin-left: 1%;
+    background-color: transparent;
+    border-radius: 30%;
+    cursor: pointer;
 }
 
 .main-weather-icon {
@@ -178,6 +185,10 @@ input[type="text"] {
 .day {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+}
+
+.day>h4 {
+    cursor: pointer;
 }
 
 .day-icon {

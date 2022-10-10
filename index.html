@@ -22,8 +22,8 @@
         <div class="card">
             <div class="weather-box">
                 <div class="search-box">
-                    <input type="text" class="search-bar" value="Kharkiv">
-                    <button class="search-bar-icon">
+                    <input type="text" id="search-bar" class="search-bar" value="Kharkiv">
+                    <button id="search-btn" class="search-bar-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
@@ -48,58 +48,15 @@
                 </div>
             </div>
             <hr/>
+
+            <!-- Swiper -->
             <div class="weather-timeline swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide weather-time">
-                        <h5>3:00</h5>
-                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
-                        <h5>+16°</h5>
-                    </div>
-                    <div class="swiper-slide weather-time">
-                        <h5>6:00</h5>
-                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
-                        <h5>+16°</h5>
-                    </div>
-                    <div class="swiper-slide weather-time">
-                        <h5>9:00</h5>
-                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
-                        <h5>+16°</h5>
-                    </div>
-                    <div class="swiper-slide weather-time">
-                        <h5>12:00</h5>
-                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
-                        <h5>+16°</h5>
-                    </div>
-                    <div class="swiper-slide weather-time">
-                        <h5>15:00</h5>
-                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
-                        <h5>+18°</h5>
-                    </div>
-                    <div class="swiper-slide weather-time">
-                        <h5>18:00</h5>
-                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
-                        <h5>+18°</h5>
-                    </div>
-                    <div class="swiper-slide weather-time">
-                        <h5>21:00</h5>
-                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
-                        <h5>+18°</h5>
-                    </div>
-                    <div class="swiper-slide weather-time">
-                        <h5>24:00</h5>
-                        <img class="weather-time-icon" src="https://openweathermap.org/img/wn/04d.png">
-                        <h5>+18°</h5>
-                    </div>
+                <div id="swiper-wrapper" class="swiper-wrapper">
                 </div>
             </div>
-            <!-- <div class="slider-bar">
-                <div id="slider-value" class="slider-value">8:30</div>
-                <div class="slider">
-                    <input id="slider-input" type="range" min="8.5" max="18.5" value="8.5" step="0.5">
-                    <progress min="0" max="10" value="0"></progress>
-                </div>
-            </div> -->
         </div>
+
+        <!-- Wind speed and humidity -->
         <div class="card" id="detailed-info">
             <div class="weather-indicator">
                 <i class="fa-solid fa-wind"></i>
@@ -141,7 +98,9 @@
                 </div>
             </div>
         </div>
+
     </div>
+
     <!-- Swiper js -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <!-- Custom js -->
